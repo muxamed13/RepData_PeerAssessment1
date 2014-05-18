@@ -1,11 +1,29 @@
 # Reproducible Research: Peer Assessment 1
 
 
+
 ## Loading and preprocessing the data
+
+```r
+data <- read.table("activity.csv", header = TRUE, sep = ",", na.strings = "NA")
+data <- na.omit(data)
+data$date <- as.Date(data$date)
+```
 
 
 
 ## What is mean total number of steps taken per day?
+
+```r
+meaneachday <- aggregate(data$steps, list(Date = data$date), mean)
+medianeachday <- aggregate(data$steps, list(Date = data$date), median)
+
+sumeachday <- aggregate(data$steps, list(Date = data$date), sum)
+
+hist(sumeachday$x)
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
 
 
 
